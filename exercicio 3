@@ -1,0 +1,47 @@
+# Criar banco de dados
+CREATE DATABASE db_escola;
+
+# Selecionar o banco de dados 
+USE db_escola;
+
+# Criar tabela da escola
+CREATE TABLE tb_estudantes (
+id_estudante INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(150) NOT NULL, 
+data_nascimento DATE NOT NULL,
+serie VARCHAR(20) NOT NULL,
+turma VARCHAR(120) NOT NULL,
+nota DECIMAL (3,2)
+);
+
+# Selecionar dados da tabela
+SELECT * FROM tb_estudantes;
+# Apaga o banco de dados
+DROP DATABASE db_escola;
+
+# Inserir dados na tabela
+INSERT INTO tb_estudantes (nome, data_nascimento, serie, turma, nota)
+VALUES('Lucas Almeida', '2006-05-12', '3º Ano', 'A', 8.5);
+INSERT INTO tb_estudantes (nome, data_nascimento, serie, turma, nota)
+VALUES('Mariana Santos', '2007-09-22', '2º Ano', 'B', 7.8);
+INSERT INTO tb_estudantes (nome, data_nascimento, serie, turma, nota)
+VALUES('Gabriel Costa', '2007-02-14', '2º Ano', 'A', 9.2);
+INSERT INTO tb_estudantes (nome, data_nascimento, serie, turma, nota)
+VALUES('Ana Beatriz Oliveira', '2008-03-18', '1º Ano', 'C', 8.0);
+INSERT INTO tb_estudantes (nome, data_nascimento, serie, turma, nota)
+VALUES('Pedro Henrique Lima', '2006-08-30', '3º Ano', 'B', 6.9);
+INSERT INTO tb_estudantes (nome, data_nascimento, serie, turma, nota)
+VALUES('Carla Fernandes', '2008-11-14', '1º Ano', 'A', 9.5);
+INSERT INTO tb_estudantes (nome, data_nascimento, serie, turma, nota)
+VALUES('Rafael Souza', '2007-01-25', '2º Ano', 'C', 7.4);
+INSERT INTO tb_estudantes (nome, data_nascimento, serie, turma, nota)
+VALUES('Beatriz Martins', '2006-06-07', '3º Ano', 'C', 8.8);
+
+# Seleção de dados específicos da tabela por meio de filtros
+SELECT * FROM 	tb_estudantes WHERE nota > 7;
+
+SELECT * FROM 	tb_estudantes WHERE nota < 7;
+
+UPDATE tb_estudantes SET nota = 9.5 WHERE id_estudante = 7; 
+
+

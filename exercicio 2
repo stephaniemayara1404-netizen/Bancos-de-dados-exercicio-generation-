@@ -1,0 +1,46 @@
+# Criar banco de dados
+CREATE DATABASE db_e_commerce;
+
+# Selecionar o banco de dados 
+USE db_e_commerce;
+
+# Criar tabela do e_commerce
+CREATE TABLE tb_produtos(
+id_produto INT AUTO_INCREMENT PRIMARY KEY,
+nome_produto VARCHAR(150) NOT NULL, 
+categoria VARCHAR(100),
+preco DECIMAL(10,2) NOT NULL,
+estoque INT NOT NULL
+);
+ 
+# Selecionar dados da tabela 
+SELECT * FROM tb_produtos; 
+
+DROP DATABASE db_e_commerce;
+
+# Inserir dados na tabela
+INSERT INTO tb_produtos (nome_produto, categoria, preco, estoque)
+VALUES('Smartphone Samsung Galaxy A15', 'Eletrônicos', 1299.90, 25);
+INSERT INTO tb_produtos (nome_produto, categoria, preco, estoque)
+VALUES('Notebook Lenovo Ideapad 3', 'Informática', 3499.00, 10);
+INSERT INTO tb_produtos (nome_produto, categoria, preco, estoque)
+VALUES('Fone de Ouvido Bluetooth JBL', 'Acessórios', 299.90, 40); 
+INSERT INTO tb_produtos (nome_produto, categoria, preco, estoque)
+VALUES('Camiseta Masculina Básica', 'Roupas', 59.90, 100);
+INSERT INTO tb_produtos (nome_produto, categoria, preco, estoque)
+VALUES('Tênis Esportivo Nike Revolution', 'Calçados', 399.90, 30);
+INSERT INTO tb_produtos (nome_produto, categoria, preco, estoque)
+VALUES('Smart TV LG 50 Polegadas', 'Eletrônicos', 2799.90, 8);
+INSERT INTO tb_produtos (nome_produto, categoria, preco, estoque)
+VALUES('Mouse Gamer Logitech G203', 'Informática', 149.90, 60); 
+INSERT INTO tb_produtos (nome_produto, categoria, preco, estoque)
+VALUES('Mochila Executiva para Notebook', 'Acessórios', 189.90, 35);
+
+# Seleção de dados específicos da tabela por meio de filtros
+SELECT * FROM tb_produtos WHERE preco > 500;
+
+SELECT * FROM tb_produtos WHERE preco < 500;
+
+UPDATE tb_produtos SET preco = 89.90, estoque = 45 WHERE id_produto = 4; 
+
+

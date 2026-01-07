@@ -1,0 +1,43 @@
+# Criar banco de dados
+CREATE DATABASE db_rh_empresa;
+
+# Selecionar o banco de dados
+USE db_rh_empresa;
+
+# Criar tabela de colaboradores 
+ CREATE TABLE tb_colaboradores( 
+ id BIGINT AUTO_INCREMENT PRIMARY KEY,
+ nome VARCHAR(255) NOT NULL,
+ cargo VARCHAR(50),
+ salario DECIMAL(10,2),
+ data_admissao DATE
+ );
+ 
+# Selecionar dados da tabela 
+SELECT * FROM tb_colaboradores;
+# Apaga o banco de dados 
+ DROP DATABASE db_rh_empresa;
+
+# Inserir dados na tabela
+INSERT INTO tb_colaboradores(nome, cargo, salario, data_admissao)
+VALUES('Ana Silva', 'Analista de RH', 3500.00, '2022-03-15');
+INSERT INTO tb_colaboradores(nome, cargo, salario, data_admissao)
+VALUES('Bruno Santos', 'Assistente Administrativo', 2200.00, '2021-08-10');
+INSERT INTO tb_colaboradores(nome, cargo, salario, data_admissao)
+VALUES('Carla Oliveira', 'Gerente de RH', 6500.00, '2019-01-20');
+INSERT INTO tb_colaboradores(nome, cargo, salario, data_admissao)
+VALUES('Diego Pereira', 'Auxiliar de RH', 1800.00, '2023-06-05');
+INSERT INTO tb_colaboradores(nome, cargo, salario, data_admissao)
+VALUES('Fernanda Costa', 'Coordenadora de RH', 4800.00, '2020-11-30');
+
+# Seleção de dados específicos da tabela por meio de filtros
+SELECT * FROM tb_colaboradores WHERE salario > 2000;
+
+SELECT * FROM tb_colaboradores WHERE salario < 2000;
+
+UPDATE tb_colaboradores SET salario = 2200, cargo = 'Assistente Administrativo' WHERE id = 4; 
+
+
+ 
+ 
+ 
