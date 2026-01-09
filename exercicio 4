@@ -1,0 +1,75 @@
+CREATE DATABASE db_generation_game_online;
+
+USE db_generation_game_online;
+
+CREATE TABLE tb_classes( 
+id BIGINT AUTO_INCREMENT PRIMARY KEY,
+classes VARCHAR (50) NOT NULL,
+tipo_ataque VARCHAR(30),
+nivel_dificuldade INT -- usado para números médios, como níveis, idade, quantidade de itens
+);
+
+CREATE TABLE tb_personagens( 
+id BIGINT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR (50) NOT NULL,
+nivel INT, 
+ataque INT, 
+defesa INT, 
+id_classe BIGINT, -- usar BIGINT quando precisar de números muito grandes ou muitos registros
+FOREIGN KEY(id_classe) REFERENCES tb_classes(id) -- cria relacionamento entre as tabelas personagem e classes 
+-- atraves do atributo id da tabela classes e o atributo id_classe da tabela personagens 
+);
+
+
+SELECT * FROM tb_personagens;
+SELECT * FROM tb_classes;
+-- inserir dados na tabela 
+INSERT INTO tb_classes (classes, tipo_ataque, nivel_dificuldade) VALUES -- valores
+('Guerreiro', 'Fisico', 2),
+('Mago', 'Magica', 4),
+('Arqueiro', 'Distância', 3),
+('Assassino', 'Físico', 5),
+('Clérigo', 'Mágico', 3);
+
+INSERT INTO tb_personagens (nome, nivel, ataque, defesa, id_classe) VALUES
+('Thor', 10, 150, 1500, 1),     -- Guerreiro
+('Ares', 12, 180, 1300, 1),     -- Guerreiro
+('Merlin', 8, 2500, 80, 2),     -- Mago
+('Morgana', 15, 220, 90, 2),   -- Mago
+('Legolas', 11, 170, 110, 3),  -- Arqueiro
+('Robin', 14, 190, 100, 3),    -- Arqueiro
+('Shadow', 9, 210, 95, 4),     -- Assassino
+('Luciel', 13, 160, 140, 5);   -- Clérigo
+
+DELETE FROM tb_personagens WHERE id > 0; -- deletar os dados 
+
+SELECT * FROM tb_personagens WHERE ataque > 2000;
+
+SELECT * FROM tb_personagens WHERE defesa BETWEEN 1000 AND 2000; -- BETWEEN significa "entre algo"
+
+SELECT * FROM tb_personagens WHERE nome LIKE '%c%'; -- LIKE serve para fazer uma pesquisa
+
+
+SELECT tb_personagens.id,nome,classes,nivel,tipo_ataque,ataque,defesa,nivel_dificuldade -- selecione todos 
+FROM tb_personagens INNER JOIN tb_classes
+ON tb_personagens.id_classe = tb_classes.id;
+
+SELECT tb_personagens.id,nome,classes,nivel,tipo_ataque,ataque,defesa,nivel_dificuldade -- selecione todos 
+FROM tb_personagens INNER JOIN tb_classes -- unindo os dados das tabelas 
+ON tb_personagens.id_classe = tb_classes.id -- comparando id_classe da tabela personages = id da tabela classes
+WHERE classes = 'Guerreiro';  -- onde 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

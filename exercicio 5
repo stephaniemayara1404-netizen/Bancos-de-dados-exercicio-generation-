@@ -1,0 +1,62 @@
+# Criar banco de dados
+CREATE DATABASE db_farmacia_bem_estar;
+
+# Selecionar o banco de dados
+USE db_farmacia_bem_estar;
+
+# Criar tabela categorias
+CREATE TABLE tb_categorias (
+id BIGINT AUTO_INCREMENT PRIMARY KEY,
+categoria VARCHAR(30),
+descricao VARCHAR(100)
+);
+
+# Criar tabela produtos
+CREATE TABLE tb_produtos (
+id BIGINT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR (30),
+valor DECIMAL(6,2),
+quantidade INT,
+fabricante VARCHAR(100),
+categoria_id BIGINT,
+FOREIGN KEY(categoria_id) REFERENCES tb_categorias(id)
+);
+
+# adiciona as categorias da tabela
+INSERT INTO tb_categorias (categoria, descricao) VALUES
+('Anti-inflamatórios', 'Medicamentos para inflamação e dor'),
+('Antialérgicos', 'Tratamento de alergias e reações alérgicas'),
+('Dermatológicos', 'Produtos para cuidados com a pele'),
+('Infantil', 'Medicamentos e produtos para crianças'),
+('Geriátricos', 'Produtos voltados para a saúde do idoso');
+
+# Adiciona produtos a tabela
+INSERT INTO tb_produtos (nome, valor, quantidade, fabricante, categoria_id) VALUES
+('Ibuprofeno 400mg', 16.90, 120, 'Neo Química', 1),
+('Diclofenaco Potássico', 18.50, 80, 'Cimed', 1),
+('Loratadina', 13.00, 150, 'Medley', 2),
+('Desloratadina', 29.90, 60, 'Eurofarma', 2),
+('Pomada Hidratante', 24.90, 70, 'Nivea', 3),
+('Bepantol Derma', 32.00, 50, 'Bayer', 3),
+('Xarope Infantil', 17.50, 90, 'Aché', 4),
+('Fralda geriatrica', 60.00, 40, 'Centrum', 5);
+
+# Seleciona todos produtos que tenham valor superior a R$:50,00
+SELECT * FROM tb_produtos WHERE valor>50;
+
+# Seleciona todos os produtos com valor entre R$:5,00 e R$:60,00
+SELECT * FROM tb_produtos WHERE valor BETWEEN 5 AND 60;
+
+# Seleciona todos os produtos que possuam a letra "C" no atributo nome
+SELECT * FROM tb_produtos WHERE nome LIKE "%c%";
+
+# Seleciona todos os produtos com as suas categortias
+SELECT tb_produtos.id,nome,valor,quantidade,fabricante,categoria,descricao
+FROM tb_produtos INNER JOIN tb_categorias
+ON  tb_produtos.categoria_id = tb_categorias.id;
+
+# Seleciona todos os produtos com as respectivas categorias filtrando pela categoria consmeticos
+SELECT tb_produtos.id,nome,valor,quantidade,fabricante,categoria,descricao
+FROM tb_produtos INNER JOIN tb_categorias
+ON  tb_produtos.categoria_id = tb_categorias.id
+WHERE categoria = "Geriátricos";
